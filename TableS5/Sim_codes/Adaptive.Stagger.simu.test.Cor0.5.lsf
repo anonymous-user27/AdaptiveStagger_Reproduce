@@ -1,0 +1,20 @@
+  
+#BSUB -W 24:00                    
+#BSUB -o /rsrch5/scratch/biostatistics/swang23/Staggering/TableS5/Sim_codes/Adaptive.Stagger.Cor0.5_sim.%J.%I
+#BSUB -e /rsrch5/scratch/biostatistics/swang23/Staggering/TableS5/Sim_codes/Adaptive.Stagger.Cor0.5_sim.%J.%I
+#BSUB -cwd /rsrch5/scratch/biostatistics/swang23/Staggering/TableS5/Sim_codes
+#BSUB -q medium
+#BSUB -u 
+#BSUB -n 6
+#BSUB -M 16
+#BSUB -R rusage[mem=16]
+#BSUB -B
+#BSUB -N 
+module load R/4.3.1
+Rscript Run.Sim.Adaptive.Stagger.Cor0.5.R ${LSB_JOBINDEX} 
+
+# The $LSB_JOBINDEX will be assigned the value of the job array index.
+echo "This job has been assigned the array index:"
+echo $LSB_JOBINDEX
+
+# bsub -J "Adaptive.Stagger.Cor0.5_sim[1-420]" < ./Adaptive.Stagger.simu.test.Cor0.5.lsf
